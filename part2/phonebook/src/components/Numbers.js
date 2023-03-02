@@ -1,11 +1,21 @@
-const Numbers = (props) => {
+const Numbers = ({value,delteHandle,search}) => {
+  const filterContacts = value.filter((names) =>
+    names.name.toLowerCase().startsWith(search.toLowerCase())
+  );
 
-    const filterContacts = props.value.filter(names => names.name.toLowerCase().startsWith(props.search.toLowerCase()));
-    return(
-        <>
-            <h2>Numbers</h2>
-            {filterContacts.map(names => <li key={names.id}>{names.name} {names.number}</li>)}
-        </>
-    );
+  return (
+    <>
+      <h2>Numbers</h2>
+      {filterContacts.map((names) => (
+        <div key={names.id}>
+          {" "}
+          <li >
+            {names.name} {names.number}
+          </li>{" "}
+          <button   onClick={() =>delteHandle(names.id)}>delte</button>
+        </div>
+      ))}
+    </>
+  );
 };
 export default Numbers;
